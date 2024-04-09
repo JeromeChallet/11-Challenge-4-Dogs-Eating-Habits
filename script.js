@@ -54,3 +54,26 @@ const dogs = [
 	{ weight: 13, curFood: 275, owners: ["Sarah", "John"] },
 	{ weight: 32, curFood: 340, owners: ["Michael"] },
 ];
+console.log("first: ", dogs);
+
+// curFood > (recommendedFood * 0.90) && curFood < (recommendedFood * 1.10)
+// recommendedFood = weight ** 0.75 * 28
+
+/*1. Loop over the 'dogs' array containing dog objects, and for each dog, calculate 
+the recommended food portion and add it to the object as a new property. Do 
+not create a new array, simply loop over the array. Forumla: 
+recommendedFood = weight ** 0.75 * 28. (The result is in grams of 
+food, and the weight needs to be in kg) */
+
+// mutate, dogs.push
+// function rFood(arr) {
+// 	for (i = 0; i < arr.length; i++) {
+// 		const recommendedFood = arr[i].weight ** 0.75 * 28;
+// 		arr[i].recommendedFood = recommendedFood;
+// 	}
+// }
+
+dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+
+rFood(dogs);
+console.log("second: ", dogs);
