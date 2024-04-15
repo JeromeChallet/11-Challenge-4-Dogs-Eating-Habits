@@ -54,16 +54,9 @@ const dogs = [
 	{ weight: 13, curFood: 275, owners: ["Sarah", "John"] },
 	{ weight: 32, curFood: 340, owners: ["Michael"] },
 ];
-console.log("first: ", dogs);
 
 // curFood > (recommendedFood * 0.90) && curFood < (recommendedFood * 1.10)
 // recommendedFood = weight ** 0.75 * 28
-
-/*1. Loop over the 'dogs' array containing dog objects, and for each dog, calculate 
-the recommended food portion and add it to the object as a new property. Do 
-not create a new array, simply loop over the array. Forumla: 
-recommendedFood = weight ** 0.75 * 28. (The result is in grams of 
-food, and the weight needs to be in kg) */
 
 // mutate, dogs.push
 // function rFood(arr) {
@@ -73,7 +66,29 @@ food, and the weight needs to be in kg) */
 // 	}
 // }
 
+//1.
 dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log("1.dogs: ", dogs);
 
-rFood(dogs);
-console.log("second: ", dogs);
+//2.
+const sarahDog = dogs.find((dog) => dog.owners.includes("Sarah"));
+console.log("sdg: ", sarahDog);
+console.log(
+	`sarahs dog is eating too ${
+		sarahDog.curFood > sarahDog.recFood ? "much" : "little"
+	} food`
+);
+//3.
+const ownersEatTooMuch = dogs
+	.filter((dog) => dog.curFood > dog.recFood)
+	.flatMap((dog) => dog.owners);
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = dogs
+	.filter((dog) => dog.curFood < dog.recFood)
+	.flatMap((dog) => dog.owners);
+console.log(ownersEatTooLittle);
+
+//4.
+console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much`);
+console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little`);
